@@ -7,7 +7,7 @@ import { PassportAuthenticator, Server } from "typescript-rest";
 import { logger } from "./common/logger";
 
 export class App {
-  public PORT: number = +process.env.PORT || 3000;
+  public PORT: number = +process.env.PORT || 3004;
   private readonly app: express.Application;
   private server: http.Server = null;
 
@@ -33,7 +33,7 @@ export class App {
   }
 
   public async stop(): Promise<boolean> {
-    return new Promise<boolean>(resolve => {
+    return new Promise<boolean>((resolve) => {
       if (this.server) {
         this.server.close(() => {
           return resolve(true);
@@ -54,7 +54,7 @@ export class App {
     const JWT_SECRET: string = "some-jwt-secret";
     const jwtConfig: StrategyOptions = {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: Buffer.from(JWT_SECRET)
+      secretOrKey: Buffer.from(JWT_SECRET),
     };
     const strategy = new Strategy(
       jwtConfig,
@@ -66,7 +66,7 @@ export class App {
       deserializeUser: (user: string) => JSON.parse(user),
       serializeUser: (user: any) => {
         return JSON.stringify(user);
-      }
+      },
     });
     Server.registerAuthenticator(authenticator);
     Server.registerAuthenticator(authenticator, "secondAuthenticator");

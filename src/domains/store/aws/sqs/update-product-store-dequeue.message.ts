@@ -13,9 +13,9 @@ export class UpdateProductStoreDequeueMessage extends DequeueMessage {
 
   public async processMessage(message: AwsMessage): Promise<any> {
     const values = {
-      ProductId: message.MessageAttributes.ProductId.Value,
-      Operation: message.MessageAttributes.Operation.Value,
-      ProductStock: message.MessageAttributes.ProductStock.Value,
+      productModelId: message.MessageAttributes.ProductModelId.Value,
+      pperation: message.MessageAttributes.Operation.Value,
+      qty: message.MessageAttributes.Qty.Value,
     };
 
     logger.debug(

@@ -1,6 +1,7 @@
 import { IDequeueMessage } from "./common/aws/sqs/dequeue-message.interface";
 import { AddNewProductDequeueMessage } from "./domains/store/aws/sqs/addnew-product-dequeue.message";
 import { UpdateProductStoreDequeueMessage } from "./domains/store/aws/sqs/update-product-store-dequeue.message";
+import { AddNewProductModelDequeueMessage } from "./domains/store/aws/sqs/addnew-productmodel-dequeue.message";
 
 export class SqsConsumers {
   private dequeueServices: Array<IDequeueMessage>;
@@ -8,6 +9,7 @@ export class SqsConsumers {
     this.dequeueServices = [
       new AddNewProductDequeueMessage(),
       new UpdateProductStoreDequeueMessage(),
+      new AddNewProductModelDequeueMessage(),
     ];
   }
 
